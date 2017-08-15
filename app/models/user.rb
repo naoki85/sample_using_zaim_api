@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :tweet_messages
 
   # Find or create by auth hash
   # @param  [String] auth_hash

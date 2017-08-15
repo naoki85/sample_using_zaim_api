@@ -16,7 +16,9 @@ module SampleUsingZaimApi
     # -- all .rb files in that directory are automatically loaded.
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
-    config.i18n.default_locale = :ja
+    I18n.available_locales = [:en, :ja]
+    I18n.config.enforce_available_locales = true
+    config.i18n.default_locale = :en
 
     config.generators do |g|
       g.assets false

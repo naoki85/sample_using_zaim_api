@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tweet_messages
   root to: redirect('/top')
   get 'top' => 'zaim_api#top'
   get 'callback' => 'zaim_api#callback'

@@ -20,6 +20,8 @@ html
           ul.nav.navbar-nav.navbar-right
             - if logged_in?
               li
+                = link_to 'Tweet', tweet_messages_path
+              li
                 = link_to 'Logout', logout_path
             - else
               li
