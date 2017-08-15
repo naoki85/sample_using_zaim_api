@@ -34,6 +34,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'oauth'
+gem 'omniauth'
+gem 'omniauth-twitter'
 gem 'slim-rails'
 gem 'dotenv-rails'
 gem 'jquery-rails'
