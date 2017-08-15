@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get 'login' => 'zaim_api#login'
   get 'money' => 'zaim_api#money'
 
+  get 'auth/:provider/callback' => 'sessions#create'
+  get '/logout' => 'sessions#destroy', as: :logout
+
   # view routing errors
   match '*path' => 'application#render_404', via: :all
 end
