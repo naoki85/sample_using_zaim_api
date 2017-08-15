@@ -22,6 +22,7 @@ module SampleUsingZaimApi
       g.assets false
       g.helper false
       g.test_framework false
+      g.factory_girl false
     end
   end
 end

@@ -40,6 +40,7 @@ gem 'slim-rails'
 gem 'dotenv-rails'
 gem 'jquery-rails'
 gem 'bootstrap-sass', '3.3.6'
+gem 'factory_girl_rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -47,6 +48,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rspec-rails', '~> 3.6'
 end
 
 group :development do
