@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'twitter'
 gem 'oauth'
 gem 'omniauth'
 gem 'omniauth-twitter'
