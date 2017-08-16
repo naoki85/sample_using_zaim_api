@@ -23,7 +23,15 @@ class ZaimApiController < ApplicationController
       access_token = @request_token.get_access_token(:oauth_verifier => oauth_verifier)
       session[:access_token] = access_token.token
       session[:access_secret] = access_token.secret
-      redirect_to money_path
+
+      if current_user.update({ zaim_request_token: session[:request_token],
+                               zaim_request_token_secret: session[:request_secret],
+                               zaim_access_token: session[:access_token],
+                               zaim_access_token_secret: session[:access_secret] })
+        redirect_to money_path
+      else
+        logout
+      end
     else
       logout
     end
