@@ -15,7 +15,7 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          = link_to 'AwesomeEvents', root_path, class: 'navbar-brand'
+          = link_to 'Let\'s make a household account summary', root_path, class: 'navbar-brand'
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-right
             - if logged_in?
@@ -31,4 +31,4 @@ html
         .alert.alert-success = flash[:notice]
       - if flash[:alert]
         .alert.alert-danger = flash[:alert]
-    = yield
+      = yield

@@ -1,0 +1,14 @@
+table.table.table-striped
+  tr
+    td Message
+    td = @tweet_message.message
+  tr
+    td Threshold
+    td = @tweet_message.threshold
+  tr
+    td Condition
+    td = @tweet_message.condition
+
+= link_to 'Edit', edit_tweet_message_path(@tweet_message)
+'  |
+= link_to 'Back', tweet_messages_path

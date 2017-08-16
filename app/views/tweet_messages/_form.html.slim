@@ -1,0 +1,23 @@
+= form_with(model: @tweet_message, local: true, html: { }) do |f|
+  - if @tweet_message.errors.any?
+    div#error_explanation.alert.alert-danger
+      h2
+        = "#{pluralize(@tweet_message.errors.count, 'error')} prohibited this tweet message from being saved"
+        ul
+          - @tweet_message.errors.full_messages.each do |message|
+            li = message
+
+  div.form-field
+    = f.label :message, class: 'required'
+    = f.text_field :message, class: 'form-control'
+
+  div.form-field
+    = f.label :threshold, class: 'required'
+    = f.number_field :threshold, class: 'form-control'
+
+  div.form-field
+    = f.label :condition, class: 'required'
+    = f.select :condition, { 'greater than' => '1', 'not less than' => '2', 'equal' => '3' }, {}, class: 'form-control'
+
+  div
+    = f.submit class: 'btn btn-default'

@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  include SessionsHelper
+
   concerning :CommonExceptionHandling do
     class Forbidden < ActionController::ActionControllerError; end
     class Locked < ActionController::ActionControllerError; end
