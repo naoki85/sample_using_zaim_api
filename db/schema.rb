@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170815151229) do
     t.integer "user_id", null: false
     t.string "message", null: false
     t.integer "threshold", null: false
-    t.integer "condition", limit: 1, null: false
+    t.integer "frequency", limit: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_tweet_messages_on_user_id"

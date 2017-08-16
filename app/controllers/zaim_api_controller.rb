@@ -40,7 +40,8 @@ class ZaimApiController < ApplicationController
   def money
     set_consumer
     zaim_api = ZaimApi.new(@consumer, session[:access_token], session[:access_secret])
-    @money = zaim_api.get_list_of_input_money_data
+    options = { start_date: '2016-10-26', mode: 'payment' }
+    @money = zaim_api.get_list_of_input_money_data(options)
   end
 
   def logout
