@@ -27,10 +27,14 @@ ActiveRecord::Schema.define(version: 20170815151229) do
     t.string "uid", null: false
     t.string "nickname", null: false
     t.string "image_url", null: false
-    t.string "twitter_consumer_key"
-    t.string "twitter_consumer_secret"
-    t.string "twitter_access_token"
-    t.string "twitter_access_token_secret"
+    t.string "encrypt_tw_consumer_key"
+    t.string "encrypt_tw_consumer_secret"
+    t.string "encrypt_tw_access_token"
+    t.string "encrypt_tw_access_token_secret"
+    t.string "encrypt_zaim_request_token"
+    t.string "encrypt_zaim_request_token_secret"
+    t.string "encrypt_zaim_access_token"
+    t.string "encrypt_zaim_access_token_secret"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(current_user.id)
-    if @user.update_user_with_encrypt(user_params)
+    if @user.update(user_twitter_api_params)
       redirect_to root_path, notice: 'Success setting API Key.'
     else
       redirect_to edit_user_path, alert: 'Server error was occurred.'
@@ -16,11 +16,7 @@ class UsersController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.find(current_user.id)
-  end
-
-  def user_params
+  def user_twitter_api_params
     params.fetch(:user, {}).permit(
         :twitter_consumer_key,
         :twitter_consumer_secret,

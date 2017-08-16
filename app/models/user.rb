@@ -1,11 +1,6 @@
 class User < ApplicationRecord
   include Encryptor
 
-  attr_accessor :decrypt_twitter_consumer_key,
-                :decrypt_twitter_consumer_secret,
-                :decrypt_twitter_access_token,
-                :decrypt_twitter_access_token_secret
-
   has_many :tweet_messages
 
   # Find or create by auth hash
@@ -23,47 +18,72 @@ class User < ApplicationRecord
     end
   end
 
-  # Update below parameters
-  # @param  [String] params['twitter_consumer_key']
-  # @param  [String] params['twitter_consumer_secret']
-  # @param  [String] params['twitter_access_token']
-  # @param  [String] params['twitter_access_token_secret']
-  # @return [Object]
-  def update_user_with_encrypt(params)
-    update(encrypt_params(params))
+  ## Setter & Getter##
+  ## Twitter ##
+
+  def twitter_consumer_key=(value)
+    self.encrypt_tw_consumer_key = encrypt(value)
   end
 
-  def decrypt_twitter_consumer_key
-    decrypt(self.twitter_consumer_key)
+  def twitter_consumer_key
+    decrypt(self.encrypt_tw_consumer_key)
   end
 
-  def decrypt_twitter_consumer_secret
-    decrypt(self.twitter_consumer_secret)
+  def twitter_consumer_secret=(value)
+    self.encrypt_tw_consumer_secret = encrypt(value)
   end
 
-  def decrypt_twitter_access_token
-    decrypt(self.twitter_access_token)
+  def twitter_consumer_secret
+    decrypt(self.encrypt_tw_consumer_secret)
   end
 
-  def decrypt_twitter_access_token_secret
-    decrypt(self.twitter_access_token_secret)
+  def twitter_access_token=(value)
+    self.encrypt_tw_access_token = encrypt(value)
   end
 
-  private
+  def twitter_access_token
+    decrypt(encrypt_tw_access_token)
+  end
 
-  # Encrypt params
-  # @param  [String] params['twitter_consumer_key']
-  # @param  [String] params['twitter_consumer_secret']
-  # @param  [String] params['twitter_access_token']
-  # @param  [String] params['twitter_access_token_secret']
-  # @return [Hash]
-  def encrypt_params(params)
-    ret_params = {}
-    ret_params['twitter_consumer_key'] = encrypt(params['twitter_consumer_key'])
-    ret_params['twitter_consumer_secret'] = encrypt(params['twitter_consumer_secret'])
-    ret_params['twitter_access_token'] = encrypt(params['twitter_access_token'])
-    ret_params['twitter_access_token_secret'] = encrypt(params['twitter_access_token_secret'])
+  def twitter_access_token_secret=(value)
+    self.encrypt_tw_access_token_secret = encrypt(value)
+  end
 
-    ret_params
+  def twitter_access_token_secret
+    decrypt(encrypt_tw_access_token_secret)
+  end
+
+  ## Zaim ##
+
+  def zaim_request_token=(value)
+    self.encrypt_zaim_request_token = encrypt(value)
+  end
+
+  def zaim_request_token
+    decrypt(self.encrypt_zaim_request_token)
+  end
+
+  def zaim_request_token_secret=(value)
+    self.encrypt_zaim_request_token_secret = encrypt(value)
+  end
+
+  def zaim_request_token_secret
+    decrypt(self.encrypt_zaim_request_token_secret)
+  end
+
+  def zaim_access_token=(value)
+    self.encrypt_zaim_access_token = encrypt(value)
+  end
+
+  def zaim_access_token
+    decrypt(encrypt_zaim_access_token)
+  end
+
+  def zaim_access_token_secret=(value)
+    self.encrypt_zaim_access_token_secret = encrypt(value)
+  end
+
+  def zaim_access_token_secret
+    decrypt(encrypt_zaim_access_token_secret)
   end
 end

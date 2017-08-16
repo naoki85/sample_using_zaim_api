@@ -41,7 +41,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'update_user_with_encrypt' do
+  describe 'Twitter API KeyをDB保存時に暗号化する' do
     let(:user) { create(:user) }
     let(:consumer_key) { 'hogehoge' }
     let(:consumer_secret) { 'fugafuga' }
@@ -54,12 +54,12 @@ RSpec.describe User, type: :model do
       params['twitter_consumer_secret'] = consumer_secret
       params['twitter_access_token'] = access_token
       params['twitter_access_token_secret'] = access_token_secret
-      user.update_user_with_encrypt(params)
+      user.update(params)
 
-      expect(user.decrypt_twitter_consumer_key).to eq consumer_key
-      expect(user.decrypt_twitter_consumer_secret).to eq consumer_secret
-      expect(user.decrypt_twitter_access_token).to eq access_token
-      expect(user.decrypt_twitter_access_token_secret).to eq access_token_secret
+      expect(user.twitter_consumer_key).to eq consumer_key
+      expect(user.twitter_consumer_secret).to eq consumer_secret
+      expect(user.twitter_access_token).to eq access_token
+      expect(user.twitter_access_token_secret).to eq access_token_secret
     end
 
     it 'paramsが空で渡された場合、空文字が暗号化されて保存される' do
@@ -68,12 +68,48 @@ RSpec.describe User, type: :model do
       params['twitter_consumer_secret'] = ''
       params['twitter_access_token'] = ''
       params['twitter_access_token_secret'] = ''
-      user.update_user_with_encrypt(params)
+      user.update(params)
 
-      expect(user.decrypt_twitter_consumer_key).to eq ''
-      expect(user.decrypt_twitter_consumer_secret).to eq ''
-      expect(user.decrypt_twitter_access_token).to eq ''
-      expect(user.decrypt_twitter_access_token_secret).to eq ''
+      expect(user.twitter_consumer_key).to eq ''
+      expect(user.twitter_consumer_secret).to eq ''
+      expect(user.twitter_access_token).to eq ''
+      expect(user.twitter_access_token_secret).to eq ''
+    end
+  end
+
+  describe 'Zaim API KeyをDB保存時に暗号化する' do
+    let(:user) { create(:user) }
+    let(:request_token) { 'hogehoge' }
+    let(:request_token_secret) { 'fugafuga' }
+    let(:access_token) { 'hogefuga' }
+    let(:access_token_secret) { 'fugahoge' }
+
+    it 'paramsが正常に渡された場合、暗号化されて保存される' do
+      params = {}
+      params['zaim_request_token'] = request_token
+      params['zaim_request_token_secret'] = request_token_secret
+      params['zaim_access_token'] = access_token
+      params['zaim_access_token_secret'] = access_token_secret
+      user.update(params)
+
+      expect(user.zaim_request_token).to eq request_token
+      expect(user.zaim_request_token_secret).to eq request_token_secret
+      expect(user.zaim_access_token).to eq access_token
+      expect(user.zaim_access_token_secret).to eq access_token_secret
+    end
+
+    it 'paramsが空で渡された場合、空文字が暗号化されて保存される' do
+      params = {}
+      params['zaim_request_token'] = ''
+      params['zaim_request_token_secret'] = ''
+      params['zaim_access_token'] = ''
+      params['zaim_access_token_secret'] = ''
+      user.update(params)
+
+      expect(user.zaim_request_token).to eq ''
+      expect(user.zaim_request_token_secret).to eq ''
+      expect(user.zaim_access_token).to eq ''
+      expect(user.zaim_access_token_secret).to eq ''
     end
   end
 

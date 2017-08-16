@@ -15,9 +15,9 @@ module SessionsHelper
 
   # @return [Boolean]
   def already_set_api_key?
-    current_user.decrypt_twitter_consumer_key and
-        current_user.decrypt_twitter_consumer_secret and
-        current_user.decrypt_twitter_access_token and
-        current_user.decrypt_twitter_access_token_secret
+    current_user.encrypt_tw_consumer_key and
+        current_user.encrypt_tw_consumer_secret and
+        current_user.encrypt_tw_access_token and
+        current_user.encrypt_tw_access_token_secret
   end
 end
