@@ -5,6 +5,10 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :uid,       null: false
       t.string :nickname,  null: false
       t.string :image_url, null: false
+      t.string :twitter_consumer_key
+      t.string :twitter_consumer_secret
+      t.string :twitter_access_token
+      t.string :twitter_access_token_secret
 
       t.timestamps
     end

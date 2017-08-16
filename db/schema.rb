@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20170815151229) do
     t.integer "condition", limit: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tweet_messages_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -26,6 +27,10 @@ ActiveRecord::Schema.define(version: 20170815151229) do
     t.string "uid", null: false
     t.string "nickname", null: false
     t.string "image_url", null: false
+    t.string "twitter_consumer_key"
+    t.string "twitter_consumer_secret"
+    t.string "twitter_access_token"
+    t.string "twitter_access_token_secret"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true

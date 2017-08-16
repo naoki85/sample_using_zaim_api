@@ -1,0 +1,31 @@
+h1 Edit Tweet Message
+
+= form_with(url: user_path, model: @user, local: true, html: { }) do |f|
+  - if @user.errors.any?
+    div#error_explanation.alert.alert-danger
+      h2
+        = "#{pluralize(@user.errors.count, 'error')} prohibited this tweet message from being saved"
+        ul
+          - @user.errors.full_messages.each do |message|
+            li = message
+
+  div.form-field
+    = f.label :twitter_consumer_key, class: 'required'
+    = f.text_field :twitter_consumer_key, class: 'form-control', required: true
+
+  div.form-field
+    = f.label :twitter_consumer_secret, class: 'required'
+    = f.text_field :twitter_consumer_secret, class: 'form-control', required: true
+
+  div.form-field
+    = f.label :twitter_access_token, class: 'required'
+    = f.text_field :twitter_access_token, class: 'form-control', required: true
+
+  div.form-field
+    = f.label :twitter_access_token_secret, class: 'required'
+    = f.text_field :twitter_access_token_secret, class: 'form-control', required: true
+
+  div
+    = f.submit class: 'btn btn-default'
+
+= link_to 'Back', root_path

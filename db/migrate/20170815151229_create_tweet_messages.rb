@@ -8,7 +8,7 @@ class CreateTweetMessages < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-  end
 
-  add_index :tweet_messages, :user_id
+    add_index :tweet_messages, :user_id
+  end
 end

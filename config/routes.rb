@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback' => 'sessions#create'
   get '/logout' => 'sessions#destroy', as: :logout
 
+  get 'user/edit' => 'users#edit', as: :edit_user
+  patch 'user' => 'users#update', as: :user
+
   # view routing errors
   match '*path' => 'application#render_404', via: :all
 end
