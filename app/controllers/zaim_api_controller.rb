@@ -7,9 +7,6 @@ class ZaimApiController < ApplicationController
   CALLBACK_URL     = 'http://localhost:3000/callback'
   API_URL          = 'https://api.zaim.net/v2/'
 
-  def top
-  end
-
   def login
     set_consumer
     @request_token = @consumer.get_request_token(oauth_callback: CALLBACK_URL)
@@ -42,7 +39,7 @@ class ZaimApiController < ApplicationController
   def logout
     session[:request_token] = nil
     session[:access_token] = nil
-    redirect_to '/top'
+    redirect_to root_path
   end
 
   private

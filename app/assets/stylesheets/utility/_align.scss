@@ -1,0 +1,19 @@
+.l-align-center {
+  text-align: center;
+  margin: 0 auto;
+}
+.l-align-left {
+  text-align: left;
+  margin: 0 auto;
+}
+.l-align-right {
+  text-align: right;
+  margin: 0 auto;
+}
+.l-align-fixed-bottom {
+  position: fixed;
+  width: 100%;
+  bottom: 5px;
+  left: 0;
+  z-index: 10;
+}

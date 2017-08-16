@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   resources :tweet_messages
   root to: redirect('/top')
-  get 'top' => 'zaim_api#top'
+  get 'top' => 'pages#top'
+
   get 'callback' => 'zaim_api#callback'
-  get 'login' => 'zaim_api#login'
+  get 'login_to_zaim' => 'zaim_api#login'
   get 'money' => 'zaim_api#money'
+  get 'logout_from_zaim' => 'zaim_api#logout'
 
   get 'auth/:provider/callback' => 'sessions#create'
   get '/logout' => 'sessions#destroy', as: :logout

@@ -1,0 +1,15 @@
+- if already_set_api_key?
+  = link_to 'Fix Twitter API keys', edit_user_path, class: 'btn btn-info l-margin-default-bottom'
+- else
+  | You are not yet set Twitter API keys.
+  br
+  = link_to 'Settings', edit_user_path, class: 'btn btn-default l-margin-default-bottom'
+
+br
+
+- if logged_in_zaim?
+  = link_to 'Logout from Zaim', logout_from_zaim_path, class: 'btn btn-default l-margin-default-bottom'
+- else
+  | You are not yet logged in to Zaim. Log in and use the service!
+  br
+  = link_to 'Login to Zaim', login_to_zaim_path, class: 'btn btn-default l-margin-default-bottom'
