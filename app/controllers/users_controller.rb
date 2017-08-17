@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
 
   def edit
     @user = User.find(current_user.id)

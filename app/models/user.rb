@@ -26,6 +26,7 @@ class User < ApplicationRecord
   end
 
   def twitter_consumer_key
+    return '' if self.encrypt_tw_consumer_key.nil?
     decrypt(self.encrypt_tw_consumer_key)
   end
 
@@ -34,6 +35,7 @@ class User < ApplicationRecord
   end
 
   def twitter_consumer_secret
+    return '' if self.encrypt_tw_consumer_secret.nil?
     decrypt(self.encrypt_tw_consumer_secret)
   end
 
@@ -42,6 +44,7 @@ class User < ApplicationRecord
   end
 
   def twitter_access_token
+    return '' if self.encrypt_tw_access_token.nil?
     decrypt(encrypt_tw_access_token)
   end
 
@@ -50,6 +53,7 @@ class User < ApplicationRecord
   end
 
   def twitter_access_token_secret
+    return '' if self.encrypt_tw_access_token_secret.nil?
     decrypt(encrypt_tw_access_token_secret)
   end
 
@@ -60,6 +64,7 @@ class User < ApplicationRecord
   end
 
   def zaim_request_token
+    return '' if self.encrypt_zaim_request_token.nil?
     decrypt(self.encrypt_zaim_request_token)
   end
 
@@ -68,6 +73,7 @@ class User < ApplicationRecord
   end
 
   def zaim_request_token_secret
+    return '' if self.encrypt_zaim_request_token_secret.nil?
     decrypt(self.encrypt_zaim_request_token_secret)
   end
 
@@ -76,6 +82,7 @@ class User < ApplicationRecord
   end
 
   def zaim_access_token
+    return '' if self.encrypt_zaim_access_token.nil?
     decrypt(encrypt_zaim_access_token)
   end
 
@@ -84,6 +91,7 @@ class User < ApplicationRecord
   end
 
   def zaim_access_token_secret
+    return '' if self.encrypt_zaim_access_token_secret.nil?
     decrypt(encrypt_zaim_access_token_secret)
   end
 end

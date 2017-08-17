@@ -9,7 +9,7 @@ table.table.table-striped
     tr
       th Message
       th Threshold
-      th Condition
+      th Frequency
       th
 
   tbody
@@ -17,7 +17,7 @@ table.table.table-striped
       tr
         td = tweet_message.message
         td = tweet_message.threshold
-        td = tweet_message.condition
+        td = tweet_message.frequency
         td
           = link_to 'Show', tweet_message
           = link_to 'Edit', edit_tweet_message_path(tweet_message)

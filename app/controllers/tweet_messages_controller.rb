@@ -46,7 +46,7 @@ class TweetMessagesController < ApplicationController
   end
 
   def tweet_message_params
-    params.fetch(:tweet_message, {}).permit(:message, :threshold, :condition)
+    params.fetch(:tweet_message, {}).permit(:message, :threshold, :frequency)
   end
 
 end
