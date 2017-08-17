@@ -1,5 +1,15 @@
+div.l-margin-default-bottom
+  h1 Contract
+  div.container
+    /= TODO: 利用規約を記載する
+    ul.disc-list
+      li We will not use your various API keys because of only using API.
+      li We will not disclose the information we keep to a third party.
+
+
 - if logged_in?
-  div.logo-button
+  h1 Your Account
+  div.container.logo-button
     - if already_set_api_key?
       | You have set Twitter API keys.
       br
@@ -13,13 +23,37 @@
 
   br
 
-  div.logo-button
-  - if logged_in_zaim?
-    | You already logged in to Zaim.
-    = image_tag 'common/logo_zaim.png'
-    = link_to 'Logout from Zaim', logout_from_zaim_path, class: 'btn btn-default btn-toppage'
-  - else
-    | You don\'t yet logged in to Zaim. Log in and use the service!
-    br
-    = image_tag 'common/logo_zaim.png', width: '50px'
-    = link_to 'Login to Zaim', login_to_zaim_path, class: 'btn btn-default btn-toppage'
+  div.container.logo-button
+    - if logged_in_zaim?
+      | You already logged in to Zaim.
+      br
+      = image_tag 'common/logo_zaim.png'
+      = link_to 'Logout from Zaim', logout_from_zaim_path, class: 'btn btn-zaim btn-toppage'
+    - else
+      | You don't yet logged in to Zaim. Log in and use the service!
+      br
+      = image_tag 'common/logo_zaim.png'
+      = link_to 'Login to Zaim', login_to_zaim_path, class: 'btn btn-zaim btn-toppage'
+
+  h1 Your Goal
+  div.container.logo-button
+    = link_to 'New Goal', new_tweet_message_path, class: 'btn btn-default l-margin-default-bottom'
+
+    table.table
+      thead
+        tr
+          th Threshold
+          th Frequency
+          th Tweet Message
+          th
+
+      tbody
+        - @tweet_messages.each do |tweet_message|
+          tr
+            td = tweet_message.threshold.to_s + ' Yen'
+            td = tweet_message.frequency
+            td = tweet_message.message
+            td
+              = link_to 'Edit', edit_tweet_message_path(tweet_message), class: 'btn btn-warning'
+              = link_to 'Delete', tweet_message, data: {confirm: 'Are you sure?'},
+                      method: :delete, class: 'btn btn-danger l-margin-default-left'

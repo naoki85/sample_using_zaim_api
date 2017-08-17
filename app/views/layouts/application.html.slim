@@ -20,9 +20,9 @@ html
           ul.nav.my-navbar-nav.navbar-right
             - if logged_in?
               li
-                = link_to 'Tweet', tweet_messages_path
+                = link_to 'Zaim', login_to_zaim_path
               li
-                = link_to 'User', edit_user_path
+                = link_to 'Twitter', edit_user_path
               li
                 = link_to 'Logout', logout_path
             - else

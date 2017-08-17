@@ -1,0 +1,8 @@
+.btn-zaim {
+  @extend .btn-info !optional;
+  background-color: $btn-zaim-color;
+  border-color: $btn-zaim-border;
+  :focus {
+    background-color: $btn-zaim-color;
+  }
+}

@@ -1,12 +1,5 @@
 class TweetMessagesController < ApplicationController
-  before_action :set_tweet_message, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @tweet_messages = TweetMessage.where(user_id: current_user.id)
-  end
-
-  def show
-  end
+  before_action :set_tweet_message, only: [:edit, :update, :destroy]
 
   def new
     @tweet_message = TweetMessage.new
@@ -36,7 +29,7 @@ class TweetMessagesController < ApplicationController
 
   def destroy
     @tweet_message.destroy
-    redirect_to tweet_messages_path, notice: 'Tweet Message was successfully deleted.'
+    redirect_to root_path, notice: 'Tweet Message was successfully deleted.'
   end
 
   private

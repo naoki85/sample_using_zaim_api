@@ -1,0 +1,30 @@
+// 黒丸付きリスト
+.disc-list {
+  list-style-type: disc;
+  margin-left: 30px;
+}
+
+// 番号付きリスト
+.number-list {
+  margin-left: 30px;
+  list-style-type: decimal;
+}
+
+// 横並びリスト
+.list-parallel-group {
+  position: relative;
+  overflow: hidden;
+  ul {
+    position: relative;
+    left: 50%;
+    float: left;
+    li {
+      position: relative;
+      display: inline;
+      left: -50%;
+      float: left;
+      list-style: none;
+      margin: 0 10px;
+    }
+  }
+}
