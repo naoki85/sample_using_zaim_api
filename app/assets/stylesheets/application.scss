@@ -13,12 +13,18 @@
  *= require_self
  */
 
+// Common
+@import "setting";
+
 // Foundation
 @import "foundation/base";
 
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+// Layout
+@import "layout/header";
 
 // Utility
 @import "utility/align";
@@ -28,3 +34,6 @@
 
 // Module
 @import "component/form";
+
+// Project
+@import "project/pages";

@@ -1,0 +1,17 @@
+.my-navbar-default {
+  @extend .navbar-default !optional;
+  background-color: $header-background-color;
+  color: $header-color;
+  .my-navbar-brand {
+    @extend .navbar-brand !optional;
+    color: $header-color;
+  }
+  .my-navbar-nav {
+    @extend .navbar-nav !optional;
+    & > li {
+      & > a {
+        color: $header-color;
+      }
+    }
+  }
+}

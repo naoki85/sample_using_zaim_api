@@ -3,6 +3,13 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
 
+  before_action :authenticate
+
+  def authenticate
+    return if logged_in?
+    redirect_to root_path, alert: 'Please login.'
+  end
+
   concerning :CommonExceptionHandling do
     class Forbidden < ActionController::ActionControllerError; end
     class Locked < ActionController::ActionControllerError; end

@@ -7,7 +7,7 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    header.navbar.navbar-default[role="navigation"]
+    header.navbar.my-navbar-default[role="navigation"]
       .container
         .navbar-header
           button[type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"]
@@ -15,9 +15,9 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          = link_to 'Let\'s make a household account summary', root_path, class: 'navbar-brand'
+          = link_to 'Let\'s tweet you reach your goal', root_path, class: 'my-navbar-brand'
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
-          ul.nav.navbar-nav.navbar-right
+          ul.nav.my-navbar-nav.navbar-right
             - if logged_in?
               li
                 = link_to 'Tweet', tweet_messages_path

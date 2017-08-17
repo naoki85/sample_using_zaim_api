@@ -1,16 +1,25 @@
 - if logged_in?
-  - if already_set_api_key?
-    = link_to 'Fix Twitter API keys', edit_user_path, class: 'btn btn-info l-margin-default-bottom'
-  - else
-    | You are not yet set Twitter API keys.
-    br
-    = link_to 'Settings', edit_user_path, class: 'btn btn-default l-margin-default-bottom'
+  div.logo-button
+    - if already_set_api_key?
+      | You have set Twitter API keys.
+      br
+      = image_tag 'common/logo_twitter.jpg'
+      = link_to 'Fix Twitter API keys', edit_user_path, class: 'btn btn-info btn-toppage'
+    - else
+      | You don\'t yet set Twitter API keys.
+      br
+      = image_tag 'common/logo_twitter.jpg'
+      = link_to 'Settings', edit_user_path, class: 'btn btn-default btn-toppage'
 
   br
 
+  div.logo-button
   - if logged_in_zaim?
-    = link_to 'Logout from Zaim', logout_from_zaim_path, class: 'btn btn-default l-margin-default-bottom'
+    | You already logged in to Zaim.
+    = image_tag 'common/logo_zaim.png'
+    = link_to 'Logout from Zaim', logout_from_zaim_path, class: 'btn btn-default btn-toppage'
   - else
-    | You are not yet logged in to Zaim. Log in and use the service!
+    | You don\'t yet logged in to Zaim. Log in and use the service!
     br
-    = link_to 'Login to Zaim', login_to_zaim_path, class: 'btn btn-default l-margin-default-bottom'
+    = image_tag 'common/logo_zaim.png', width: '50px'
+    = link_to 'Login to Zaim', login_to_zaim_path, class: 'btn btn-default btn-toppage'
