@@ -1,59 +1,54 @@
 div.l-margin-default-bottom
-  h1 Contract
+  h1 規約
   div.container
-    /= TODO: 利用規約を記載する
     ul.disc-list
-      li We will not use your various API keys because of only using API.
-      li We will not disclose the information we keep to a third party.
-
+      li ユーザーからお預かりした各種情報は本サービスの運営にのみ利用します。
+      li お預かりした情報は第三者に公開することはありません。
+      li 本サービスのご利用により発生した、ユーザー（第3者も含む）の損害に対して一切の責任を負いません
 
 - if logged_in?
-  h1 Your Account
+  h1 アカウント情報
   div.container.logo-button
     - if already_set_api_key?
-      | You have set Twitter API keys.
-      br
+      p.alert.alert-success すでにTwitter API Keyが設定されています。
       = image_tag 'common/logo_twitter.jpg'
       = link_to 'Fix Twitter API keys', edit_user_path, class: 'btn btn-info btn-toppage'
     - else
-      | You don\'t yet set Twitter API keys.
-      br
+      p.alert.alert-danger Twitter API Keyが登録されていません。
       = image_tag 'common/logo_twitter.jpg'
-      = link_to 'Settings', edit_user_path, class: 'btn btn-default btn-toppage'
+      = link_to '設定', edit_user_path, class: 'btn btn-default btn-toppage'
 
   br
 
   div.container.logo-button
     - if logged_in_zaim?
-      | You already logged in to Zaim.
-      br
+      p.alert.alert-success すでにZaimへログイン済みです。
       = image_tag 'common/logo_zaim.png'
-      = link_to 'Logout from Zaim', logout_from_zaim_path, class: 'btn btn-zaim btn-toppage'
+      = link_to 'Zaimからログアウト', logout_from_zaim_path, class: 'btn btn-zaim btn-toppage'
     - else
-      | You don't yet logged in to Zaim. Log in and use the service!
-      br
+      p.alert.alert-danger まだZaimにログインしていません。ログインしてサービスを利用しましょう。
       = image_tag 'common/logo_zaim.png'
-      = link_to 'Login to Zaim', login_to_zaim_path, class: 'btn btn-zaim btn-toppage'
+      = link_to 'Zaimへログイン', login_to_zaim_path, class: 'btn btn-zaim btn-toppage'
 
-  h1 Your Goal
+  h1 ツイート設定
   div.container.logo-button
-    = link_to 'New Goal', new_tweet_message_path, class: 'btn btn-default l-margin-default-bottom'
+    = link_to '新しい設定', new_tweet_message_path, class: 'btn btn-default l-margin-default-bottom'
 
     table.table
       thead
         tr
-          th Threshold
-          th Frequency
-          th Tweet Message
+          th = t('activerecord.attributes.tweet_message.threshold', default: 'Threshold')
+          th = t('activerecord.attributes.tweet_message.frequency', default: 'Frequency')
+          th = t('activerecord.attributes.tweet_message.message', default: 'Tweet Message')
           th
 
       tbody
         - @tweet_messages.each do |tweet_message|
           tr
-            td = tweet_message.threshold.to_s + ' Yen'
-            td = tweet_message.frequency
+            td = tweet_message.threshold.to_s + ' 円'
+            td = t("activerecord.enum.tweet_message.frequency.#{tweet_message.frequency}")
             td = tweet_message.message
             td
-              = link_to 'Edit', edit_tweet_message_path(tweet_message), class: 'btn btn-warning'
-              = link_to 'Delete', tweet_message, data: {confirm: 'Are you sure?'},
+              = link_to '編集', edit_tweet_message_path(tweet_message), class: 'btn btn-warning'
+              = link_to '削除', tweet_message, data: {confirm: 'よろしいですか？'},
                       method: :delete, class: 'btn btn-danger l-margin-default-left'

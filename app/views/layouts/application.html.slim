@@ -2,7 +2,7 @@ doctype html
 html
   head
     title
-      | SampleUsingZaimApi
+      | Boast tweet if you can save money
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
@@ -15,7 +15,7 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          = link_to 'Let\'s tweet you reach your goal', root_path, class: 'my-navbar-brand'
+          = link_to '節約できたら自慢ツイート', root_path, class: 'my-navbar-brand'
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           ul.nav.my-navbar-nav.navbar-right
             - if logged_in?
@@ -24,10 +24,10 @@ html
               li
                 = link_to 'Twitter', edit_user_path
               li
-                = link_to 'Logout', logout_path
+                = link_to 'ログアウト', logout_path
             - else
               li
-                = link_to 'Login', '/auth/twitter'
+                = link_to 'ログイン', '/auth/twitter'
     .container
       - if flash[:notice]
         .alert.alert-success = flash[:notice]

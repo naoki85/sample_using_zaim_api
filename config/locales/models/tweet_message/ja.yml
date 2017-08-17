@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      tweet_message: "イベント"
+    attributes:
+      tweet_message:
+        coach_id: "コーチNo."
+        message: "本文"
+        threshold: "目標金額"
+        frequency: "期間"
+    enum:
+      tweet_message:
+        frequency:
+          daily: "日ごと"
+          monthly: "月ごと"
+          yearly: "年ごと"

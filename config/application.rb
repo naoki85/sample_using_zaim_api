@@ -18,8 +18,9 @@ module SampleUsingZaimApi
     config.active_record.default_timezone = :local
 
     I18n.available_locales = [:en, :ja]
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     I18n.config.enforce_available_locales = true
-    config.i18n.default_locale = :en
+    config.i18n.default_locale = :ja
 
     config.enable_dependency_loading = true
     config.autoload_paths += Dir["#{config.root}/lib"]
