@@ -8,7 +8,7 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     header.navbar.my-navbar-default[role="navigation"]
-      .container
+      .container.container-fluid
         .navbar-header
           button[type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"]
             span.sr-only Toggle navigation
@@ -19,12 +19,18 @@ html
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           ul.nav.my-navbar-nav.navbar-right
             - if logged_in?
-              li
-                = link_to 'Zaim', login_to_zaim_path
-              li
-                = link_to 'Twitter', edit_user_path
-              li
-                = link_to 'ログアウト', logout_path
+              li.dropdown
+                = link_to '#', class: 'dropdown-toggle header-icon-padding',
+                        data: { :toggle => 'dropdown' }, role: 'button' do
+                  = image_tag current_user.image_url
+                  = current_user.nickname
+                  ul.dropdown-menu[role="menu"]
+                    li
+                      = link_to 'Zaim', login_to_zaim_path
+                    li
+                      = link_to 'Twitter', edit_user_path
+                    li
+                      = link_to 'ログアウト', logout_path
             - else
               li
                 = link_to 'ログイン', '/auth/twitter'
