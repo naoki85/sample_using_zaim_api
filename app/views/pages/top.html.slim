@@ -1,5 +1,5 @@
 div.l-margin-default-bottom
-  h1 規約
+  h1.h1 規約
   div.container
     ul.disc-list
       li ユーザーからお預かりした各種情報は本サービスの運営にのみ利用します。
@@ -7,7 +7,7 @@ div.l-margin-default-bottom
       li 本サービスのご利用により発生した、ユーザー（第3者も含む）の損害に対して一切の責任を負いません
 
 - if logged_in?
-  h1 アカウント情報
+  h1.h1 アカウント情報
   div.container.logo-button
     - if already_set_api_key?
       p.alert.alert-success すでにTwitter API Keyが設定されています。
@@ -30,25 +30,36 @@ div.l-margin-default-bottom
       = image_tag 'common/logo_zaim.png'
       = link_to 'Zaimへログイン', login_to_zaim_path, class: 'btn btn-zaim btn-toppage'
 
-  h1 ツイート設定
+  h1.h1 ツイート設定
+
+  br
+
   div.container.logo-button
     = link_to '新しい設定', new_tweet_message_path, class: 'btn btn-default l-margin-default-bottom'
 
-    table.table
-      thead
-        tr
-          th = t('activerecord.attributes.tweet_message.threshold', default: 'Threshold')
-          th = t('activerecord.attributes.tweet_message.frequency', default: 'Frequency')
-          th = t('activerecord.attributes.tweet_message.message', default: 'Tweet Message')
-          th
-
-      tbody
-        - @tweet_messages.each do |tweet_message|
-          tr
-            td = tweet_message.threshold.to_s + ' 円'
-            td = t("activerecord.enum.tweet_message.frequency.#{tweet_message.frequency}")
-            td = tweet_message.message
-            td
-              = link_to '編集', edit_tweet_message_path(tweet_message), class: 'btn btn-warning'
-              = link_to '削除', tweet_message, data: {confirm: 'よろしいですか？'},
-                      method: :delete, class: 'btn btn-danger l-margin-default-left'
+    - if @tweet_messages.size > 0
+      table.table-tweet-message
+        tbody
+          - @tweet_messages.each do |tweet_message|
+            tr.row-border-top
+              td
+                = t('activerecord.attributes.tweet_message.message', default: 'Tweet Message')
+              td
+                = tweet_message.message
+            tr
+              td
+                = t('activerecord.attributes.tweet_message.threshold', default: 'Threshold')
+              td
+                = tweet_message.threshold.to_s + ' 円'
+            tr
+              td
+                = t('activerecord.attributes.tweet_message.frequency', default: 'Frequency')
+              td
+                = t("activerecord.enum.tweet_message.frequency.#{tweet_message.frequency}")
+            tr.row-border-bottom
+              td[colspan="2"]
+                = link_to '編集', edit_tweet_message_path(tweet_message), class: 'btn btn-warning'
+                = link_to '削除', tweet_message, data: {confirm: 'よろしいですか？'},
+                        method: :delete, class: 'btn btn-danger l-margin-default-left'
+    - else
+      .alert.alert-danger 設定されているツイートはありません。

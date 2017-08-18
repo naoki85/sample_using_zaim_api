@@ -10,7 +10,7 @@ class TweetMessagesController < ApplicationController
     @tweet_message.user_id = current_user.id
 
     if @tweet_message.save
-      redirect_to @tweet_message, notice: 'Tweet Message was successfully created.'
+      redirect_to root_path, notice: 'Tweet Message was successfully created.'
     else
       render :new
     end
@@ -21,7 +21,7 @@ class TweetMessagesController < ApplicationController
 
   def update
     if @tweet_message.update(tweet_message_params)
-      redirect_to @tweet_message, notice: 'Tweet Message was successfully updated.'
+      redirect_to root_path, notice: 'Tweet Message was successfully updated.'
     else
       render :edit
     end

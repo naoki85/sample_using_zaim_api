@@ -10,3 +10,29 @@
   margin-bottom: 18px;
   margin-left: 10px;
 }
+
+.table-tweet-message {
+  @extend .table !optional;
+  & > tbody {
+    & > tr {
+      td {
+        border-top: none;
+        &:first-child {
+          width: 100px;
+        }
+      }
+    }
+  }
+}
+
+.row-border-top {
+  & > td {
+    border-top: 1px solid #ddd;
+  }
+}
+
+.row-border-bottom {
+  & > td {
+    border-bottom: 1px solid #ddd;
+  }
+}

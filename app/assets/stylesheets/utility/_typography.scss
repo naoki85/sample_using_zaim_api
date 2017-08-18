@@ -1,0 +1,15 @@
+.h1 {
+  @extend .h1 !optional;
+  font-size: 32px;
+  @media (max-width: 620px) {
+    font-size: 22px;
+  }
+}
+
+.h2 {
+  @extend .h2 !optional;
+  font-size: 26px;
+  @media (max-width: 620px) {
+    font-size: 22px;
+  }
+}

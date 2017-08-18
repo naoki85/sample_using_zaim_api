@@ -17,7 +17,7 @@
 
   div.form-field
     = f.label :frequency, class: 'required'
-    = f.select :frequency, TweetMessage.frequencies.to_a.map { |s| [t("activerecord.enum.tweet_message.frequency.#{s[0]}"), s[1]] },
+    = f.select :frequency, TweetMessage.frequencies.to_a.map { |s| [t("activerecord.enum.tweet_message.frequency.#{s[0]}"), s[0]] },
             {}, class: 'form-control'
 
   div

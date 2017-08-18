@@ -27,12 +27,13 @@
 @import "layout/header";
 
 // Utility
-@import "utility/btn";
 @import "utility/list";
 @import "utility/margin";
 @import "utility/padding";
+@import "utility/typography";
 
-// Module
+// Component
+@import "component/btn";
 @import "component/form";
 
 // Project
