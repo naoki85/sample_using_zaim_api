@@ -4,56 +4,28 @@ require 'oauth'
 class ZaimApi
   API_BASE_URL     = 'https://api.zaim.net/v2'
 
-  def initialize(consumer, access_token, access_token_secret)
-    @oauth_by_access_token = set_oauth_access_token(consumer, access_token, access_token_secret)
-  end
-
-  # Sum of amount from API response
-  # @param  [JSON]    response_data
-  # @return [Integer]
-  def self.sum_payment_amount(response_data)
-    sum = 0
-    response_data['money'].each do |data|
-      sum += data['amount'].to_i
-    end
-    sum
+  # @param [Object] oauth_access_token OAuth::AccessToken
+  def initialize(oauth_access_token)
+    @oauth_by_access_token = oauth_access_token
   end
 
   # GET /home/money
   # List user input
   # @param  [Hash]
   # @return [JSON]
-  def get_list_of_input_money_data(params)
+  def home_money(params)
     money = @oauth_by_access_token.get("#{API_BASE_URL}/home/money#{get_parameters_home_money(params)}")
     JSON.parse(money.body)
   end
 
   # GET /Category
-  # List category and return params are hash key is ID and value is category name.
-  # @return [Hash]
-  def get_category_list
+  # @return [JSON]
+  def category
     categories = @oauth_by_access_token.get("#{API_BASE_URL}/category")
-    json_categories = JSON.parse(categories.body)
-
-    ret_hash = {}
-    json_categories['categories'].each do |value|
-      ret_hash[value['id']] = value['name']
-    end
-    ret_hash
+    JSON.parse(categories.body)
   end
 
   private
-
-  # @param [Object] consumer
-  # @param [String] access_token
-  # @param [String] access_token_secret
-  def set_oauth_access_token(consumer, access_token, access_token_secret)
-    OAuth::AccessToken.new(
-        consumer,
-        access_token,
-        access_token_secret
-    )
-  end
 
   # GET parameters for API /home/money
   # params [Hash] params

@@ -39,7 +39,12 @@ ZaimのAPIを利用したサンプルです。
 * クローンしたら、各種Gemをインストールします。
 
 ```sh
-$ bundle install --without production
+$ ./bin/bundle install --without production
+```
+* DBをセットアップします。
+
+```sh
+$ ./bin/rails db:setup
 ```
 * 環境変数には`dotenv`を使用しています。そのため、プロジェクトディレクトリに、`.env`ファイルを作成してください。
 
@@ -57,8 +62,8 @@ ENCRYPT_SECURE_KEY = '暗号化のkey'
 $ ./bin/rails server
 ```
 
-* バッチを確認する場合は、`runner`コマンドを使用します。
-このとき、ユーザー情報やツイート情報などは設定しておいてください。
+* バッチを確認する場合は、`runner`コマンドを使用します。  
+このとき、ユーザー情報やツイート情報などは設定しておいてください。  
 また、条件をクリアしていない場合はツイートされません。
 
 ```sh

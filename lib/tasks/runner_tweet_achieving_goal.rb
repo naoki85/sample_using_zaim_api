@@ -1,47 +1,42 @@
 class Tasks::RunnerTweetAchievingGoal
-  CONSUMER_KEY     = ENV['ZAIM_CONSUMER_KEY']
-  CONSUMER_SECRET  = ENV['ZAIM_CONSUMER_SECRET']
 
   def self.execute(frequency)
+    unless %w(daily monthly yearly).include?(frequency)
+      Rails.logger.warn 'Inappropriate argument is specified.'
+      return
+    end
     users = User.includes([:tweet_messages]).all
     users.each do |user|
       next if user.tweet_messages.size == 0
 
       # 対象のユーザーが目標値を達成していたか確認
-      @consumer = OAuth::Consumer.new(
-          CONSUMER_KEY,
-          CONSUMER_SECRET,
-          site: 'https://api.zaim.net',
-          request_token_path: '/v2/auth/request',
-          authorize_url: 'https://auth.zaim.net/users/auth',
-          access_token_path: '/v2/auth/access'
-      )
+      use_zaim_api = UseZaimApi.new(user.zaim_access_token,
+                                    user.zaim_access_token_secret)
 
-      zaim_api = ZaimApi.new(@consumer,
-                             user.zaim_access_token,
-                             user.zaim_access_token_secret)
-
-      if frequency == 'daily'
-        start_date = Time.zone.now.yesterday
-      elsif frequency == 'monthly'
-        start_date = Time.zone.now.prev_month
-      else
-        start_date = Time.zone.now.prev_year
-      end
+      # APIを叩く際のoptionsの構築
+      start_date = if frequency == 'daily'
+                     Time.zone.now.yesterday
+                   elsif frequency == 'monthly'
+                     Time.zone.now.prev_month
+                   elsif frequency == 'yearly'
+                     Time.zone.now.prev_year
+                   end
       options = { start_date: start_date, mode: 'payment' }
 
-      money = zaim_api.get_list_of_input_money_data(options)
-      sum = ZaimApi.sum_payment_amount(money)
+      # APIを叩き、返却値で支払いの合計値を計算
+      money = use_zaim_api.get_list_of_input_money_data(options)
+      sum = UseZaimApi.sum_payment_amount(money)
 
       # 達成していたらツイートする
-      twitter_api = TwitterApi.new(user.twitter_consumer_key,
-                                   user.twitter_consumer_secret,
-                                   user.twitter_access_token,
-                                   user.twitter_access_token_secret)
+      use_twitter_api = UseTwitterApi.new(
+          user.twitter_consumer_key,
+          user.twitter_consumer_secret,
+          user.twitter_access_token,
+          user.twitter_access_token_secret)
 
       user.tweet_messages.each do |tweet|
-        if tweet.threshold >= sum and tweet.frequency == frequency
-          twitter_api.tweet_message(tweet.message)
+        if tweet.frequency == frequency && tweet.threshold >= sum
+          use_twitter_api.tweet_message(tweet.message)
         end
       end
     end

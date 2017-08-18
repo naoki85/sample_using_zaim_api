@@ -1,7 +1,7 @@
 require 'twitter'
 require 'rails_helper'
 
-RSpec.describe TwitterApi, type: :model do
+RSpec.describe UseTwitterApi, type: :model do
 
   before do
     @twitter_api = double('Twitter Api')

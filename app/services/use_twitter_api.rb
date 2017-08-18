@@ -1,7 +1,11 @@
 require 'twitter'
 
-class TwitterApi
+class UseTwitterApi
 
+  # @param [String] consumer_key
+  # @param [String] consumer_secret
+  # @param [String] access_token
+  # @param [String] access_secret
   def initialize(consumer_key, consumer_secret, access_token, access_secret)
     @client = Twitter::REST::Client.new do |config|
       config.consumer_key        = consumer_key
@@ -11,6 +15,7 @@ class TwitterApi
     end
   end
 
+  # @param [String] message
   def tweet_message(message)
     begin
       @client.update(message)
