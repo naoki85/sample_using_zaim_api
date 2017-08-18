@@ -28,7 +28,7 @@ class ZaimApiController < ApplicationController
                                zaim_request_token_secret: session[:request_secret],
                                zaim_access_token: session[:access_token],
                                zaim_access_token_secret: session[:access_secret] })
-        redirect_to money_path
+        redirect_to root_path
       else
         logout
       end
@@ -37,11 +37,12 @@ class ZaimApiController < ApplicationController
     end
   end
 
-  def money
+  def index
     set_consumer
     zaim_api = ZaimApi.new(@consumer, session[:access_token], session[:access_secret])
-    options = { start_date: '2016-10-26', mode: 'payment' }
+    options = { start_date: Time.zone.now.prev_month, mode: 'payment' }
     @money = zaim_api.get_list_of_input_money_data(options)
+    @category = zaim_api.get_category_list
   end
 
   def logout

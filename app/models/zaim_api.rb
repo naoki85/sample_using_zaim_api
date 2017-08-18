@@ -28,6 +28,20 @@ class ZaimApi
     JSON.parse(money.body)
   end
 
+  # GET /Category
+  # List category and return params are hash key is ID and value is category name.
+  # @return [Hash]
+  def get_category_list
+    categories = @oauth_by_access_token.get("#{API_BASE_URL}/category")
+    json_categories = JSON.parse(categories.body)
+
+    ret_hash = {}
+    json_categories['categories'].each do |value|
+      ret_hash[value['id']] = value['name']
+    end
+    ret_hash
+  end
+
   private
 
   # @param [Object] consumer
