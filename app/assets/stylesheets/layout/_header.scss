@@ -20,3 +20,11 @@
     padding-top: 0px !important;
     padding-bottom: 0px !important;
 }
+
+@media (max-width:767px) {
+  .my-navbar-default {
+    .navbar-toggle {
+      background-color: #fff;
+    }
+  }
+}

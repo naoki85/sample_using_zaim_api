@@ -24,7 +24,7 @@ div.l-margin-default-bottom
     - if logged_in_zaim?
       p.alert.alert-success すでにZaimへログイン済みです。
       = image_tag 'common/logo_zaim.png'
-      = link_to 'Zaimからログアウト', logout_from_zaim_path, class: 'btn btn-zaim btn-toppage'
+      = link_to '直近の支払い履歴を見る', zaim_money_path, class: 'btn btn-zaim btn-toppage'
     - else
       p.alert.alert-danger まだZaimにログインしていません。ログインしてサービスを利用しましょう。
       = image_tag 'common/logo_zaim.png'

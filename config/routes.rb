@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'callback' => 'zaim_api#callback'
   get 'login_to_zaim' => 'zaim_api#login'
-  get 'money' => 'zaim_api#money'
+  get 'zaim/money' => 'zaim_api#index'
   get 'logout_from_zaim' => 'zaim_api#logout'
 
   get 'auth/:provider/callback' => 'sessions#create'

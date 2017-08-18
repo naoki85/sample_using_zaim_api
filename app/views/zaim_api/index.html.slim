@@ -1,0 +1,12 @@
+- if @money['money'].count > 0
+  table.table
+    - before_row_date = ''
+    - @money['money'].each do |money|
+      - if before_row_date != money['date']
+        - before_row_date = money['date']
+        tr.row-date
+          td = json_date_convert_ja_date(money['date'])
+      tr
+        td = words_category_name_and_amount(money['category_id'], money['amount'])
+- else
+  p.alert.alert-danger 直近の支払い履歴はありません。

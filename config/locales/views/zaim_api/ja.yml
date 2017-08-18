@@ -1,0 +1,26 @@
+ja:
+  views:
+    zaim_api:
+      index:
+        categories:
+          Salary: "給与所得"
+          Advances repayment: "立替金返済"
+          Bonus: "賞与"
+          Extraordinary revenue: "臨時収入"
+          Business income: "事業所得"
+          Other: "その他"
+          Food: "食費"
+          Daily goods: "日用雑貨"
+          Transport: "交通"
+          Phone, Net: "通信"
+          Utilities: "水道・光熱"
+          Home: "住まい"
+          Socializing: "交際費"
+          Hobbies: "趣味"
+          Education: "教育・教養"
+          Medical: "医療・保険"
+          Fashion: "美容・衣服"
+          Automobile: "クルマ"
+          Taxes: "税金"
+          Big outlay: "大型出費"
+          Other: "その他"
