@@ -2,7 +2,7 @@ require 'json'
 require 'oauth'
 
 class ZaimApi
-  API_BASE_URL     = 'https://api.zaim.net/v2'
+  API_BASE_URL = 'https://api.zaim.net/v2'.freeze
 
   # @param [Object] oauth_access_token OAuth::AccessToken
   def initialize(oauth_access_token)

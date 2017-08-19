@@ -17,10 +17,10 @@ class UseTwitterApi
 
   # @param [String] message
   def tweet_message(message)
-    begin
-      @client.update(message)
-    rescue => e
-      retry
-    end
+    @client.update(message)
+    Rails.logger.info "Tweet success: #{message}"
+  rescue Twitter::Error => e
+    Rails.logger.error "Tweet error: #{e}"
+    retry
   end
 end
