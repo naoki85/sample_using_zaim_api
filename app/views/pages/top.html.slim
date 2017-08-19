@@ -21,12 +21,12 @@ div.l-margin-default-bottom
   br
 
   div.container.logo-button
-    - if logged_in_zaim?
-      p.alert.alert-success すでにZaimへログイン済みです。
+    - if coordinated_with_zaim?(current_user)
+      p.alert.alert-success すでにZaimと連携済みです。
       = image_tag 'common/logo_zaim.png'
       = link_to '直近の支払い履歴を見る', zaim_money_path, class: 'btn btn-zaim btn-toppage'
     - else
-      p.alert.alert-danger まだZaimにログインしていません。ログインしてサービスを利用しましょう。
+      p.alert.alert-danger まだZaimと連携できていません。ログインしてサービスを利用しましょう。
       = image_tag 'common/logo_zaim.png'
       = link_to 'Zaimへログイン', login_to_zaim_path, class: 'btn btn-zaim btn-toppage'
 

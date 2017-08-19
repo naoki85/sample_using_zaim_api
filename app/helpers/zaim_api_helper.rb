@@ -1,9 +1,14 @@
 module ZaimApiHelper
-  # When user is already logged in Zaim, return true.
+  # When user is already logged in Zaim and values already saved in DB,
+  # return true
   # Otherwise return false.
+  # @param  [Object]  user
   # @return [Boolean]
-  def logged_in_zaim?
-    !!session[:access_token] and !!session[:access_secret]
+  def coordinated_with_zaim?(user)
+    user.zaim_request_token.present? &&
+      user.zaim_request_token_secret.present? &&
+      user.zaim_access_token.present? &&
+      user.zaim_access_token_secret.present?
   end
 
   # @param  [Integer] category_id

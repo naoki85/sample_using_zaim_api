@@ -1,4 +1,6 @@
 class ZaimApiController < ApplicationController
+  include ZaimApiHelper
+
   CALLBACK_URL = ENV['ZAIM_CALLBACK_URL']
 
   def login
@@ -30,16 +32,14 @@ class ZaimApiController < ApplicationController
   end
 
   def index
-    use_zaim_api = UseZaimApi.new(session[:access_token], session[:access_secret])
+    unless_cordinated_redirect_to_root(current_user)
+
+    use_zaim_api = UseZaimApi.new(
+        current_user.zaim_access_token,
+        current_user.zaim_access_token_secret)
     options = { start_date: Time.zone.now.prev_month, mode: 'payment' }
     @money = use_zaim_api.get_list_of_input_money_data(options)
     @category = use_zaim_api.get_category_list
-  end
-
-  def logout
-    session[:request_token] = nil
-    session[:access_token] = nil
-    redirect_to root_path
   end
 
   private
@@ -49,5 +49,9 @@ class ZaimApiController < ApplicationController
       zaim_request_token_secret: session[:request_secret],
       zaim_access_token: session[:access_token],
       zaim_access_token_secret: session[:access_secret] }
+  end
+
+  def unless_cordinated_redirect_to_root(user)
+    redirect_to root_path, alert: '許可されていないアクセスです' unless coordinated_with_zaim?(user)
   end
 end

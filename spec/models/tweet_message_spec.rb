@@ -15,7 +15,7 @@ RSpec.describe TweetMessage, type: :model do
     end
 
     describe '#condition' do
-      it { should validate_presence_of(:condition) }
+      it { should validate_presence_of(:frequency) }
     end
   end
 end

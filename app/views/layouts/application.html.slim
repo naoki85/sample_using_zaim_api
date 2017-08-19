@@ -27,7 +27,7 @@ html
                   = current_user.nickname
                   ul.my-dropdown-menu[role="menu"]
                     li
-                      - if logged_in_zaim?
+                      - if coordinated_with_zaim?(current_user)
                         = link_to 'Zaimへログイン', login_to_zaim_path
                       - else
                         = link_to '支払い履歴', zaim_money_path
