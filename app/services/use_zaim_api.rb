@@ -19,12 +19,13 @@ class UseZaimApi
   # List category and return params are hash key is ID and value is category name.
   # @return [Hash]
   def get_category_list
-    self.zaim_api.category
-    json_categories = self.zaim_api.category
-
-    ret_hash = {}
-    json_categories['categories'].each do |value|
-      ret_hash[value['id']] = value['name']
+    ret_hash = Rails.cache.fetch("zaim_api/category", expired_in: 1.day) do
+      json_categories = self.zaim_api.category
+      tmp_ret_hash = {}
+      json_categories['categories'].each do |value|
+        tmp_ret_hash[value['id']] = value['name']
+      end
+      tmp_ret_hash
     end
     ret_hash
   end

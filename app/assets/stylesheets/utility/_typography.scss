@@ -1,15 +1,11 @@
 .h1 {
   @extend .h1 !optional;
-  font-size: 32px;
-  @media (max-width: 620px) {
-    font-size: 22px;
-  }
+  font-size: 18px;
+  border-bottom: 2px solid $header-border-color;
 }
 
 .h2 {
   @extend .h2 !optional;
-  font-size: 26px;
-  @media (max-width: 620px) {
-    font-size: 22px;
-  }
+  font-size: 16px;
+  border-bottom: 1px solid $header-border-color;
 }

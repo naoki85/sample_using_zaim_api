@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
+    Rails.cache.clear
     redirect_to root_path, notice: 'Logout succeeded.'
   end
 end
