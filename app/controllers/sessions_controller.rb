@@ -8,8 +8,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    reset_session
     Rails.cache.delete("zaim_api/home/money/#{current_user.id}")
+    reset_session
     redirect_to root_path, notice: 'ログアウトしました。'
   end
 end

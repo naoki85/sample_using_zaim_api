@@ -42,6 +42,8 @@ class ZaimApiController < ApplicationController
     @category = use_zaim_api.get_category_list
 
     @money, @sum = list_and_sum_of_payment_by_start_date(money, params[:start_date])
+
+    render 'zaim_api/index.js' if request.xhr?
   end
 
   def index_re_acquisition

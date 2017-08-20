@@ -10,7 +10,7 @@ $(document).on('turbolinks:load', function() {
     var time = 500;
 
     var target = $(this.hash);
-    if (!target.length) return ;
+    if (!target.length) return;
 
     var targetY = target.offset().top + offsetY;
     $('html, body').animate({scrollTop: targetY}, time, 'swing');
