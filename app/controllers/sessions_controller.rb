@@ -4,12 +4,12 @@ class SessionsController < ApplicationController
   def create
     user = User.find_or_create_from_auth_hash(request.env['omniauth.auth'])
     session[:user_id] = user.id
-    redirect_to root_path, notice: 'Login succeeded.'
+    redirect_to root_path, notice: 'ようこそ！'
   end
 
   def destroy
     reset_session
     Rails.cache.clear
-    redirect_to root_path, notice: 'Logout succeeded.'
+    redirect_to root_path, notice: 'ログアウトしました。'
   end
 end

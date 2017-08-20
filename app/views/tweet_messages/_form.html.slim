@@ -1,11 +1,5 @@
 = form_with(model: @tweet_message, local: true, html: { }) do |f|
-  - if @tweet_message.errors.any?
-    div#error_explanation.alert.alert-danger
-      h2
-        = "#{pluralize(@tweet_message.errors.count, 'error')} prohibited this tweet message from being saved"
-        ul
-          - @tweet_message.errors.full_messages.each do |message|
-            li = message
+  == render 'shared/form_error_messages', object: @tweet_message
 
   div.form-field
     = f.label :message, class: 'required'
@@ -21,4 +15,5 @@
             {}, class: 'form-control'
 
   div
-    = f.submit class: 'btn btn-default'
+    = f.submit class: "btn #{(controller.action_name == 'edit') ? 'btn-warning' : 'btn-info'}"
+    = link_to '戻る', root_path, class: 'btn btn-default l-margin-default-left'

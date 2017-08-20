@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :tweet_messages
+  resources :tweet_messages, only: %i[new create edit update destroy]
   root to: redirect('/top')
   get 'top' => 'pages#top'
 

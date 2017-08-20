@@ -7,9 +7,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(current_user.id)
     if @user.update(user_twitter_api_params)
-      redirect_to root_path, notice: 'Success setting API Key.'
+      redirect_to root_path, notice: 'API Keyを更新しました。'
     else
-      redirect_to edit_user_path, alert: 'Server error was occurred.'
+      redirect_to edit_user_path, alert: '更新に失敗しました。再度お試しください。'
     end
   end
 
