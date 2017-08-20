@@ -24,7 +24,7 @@ class Tasks::RunnerTweetAchievingGoal
       options = { start_date: start_date, mode: 'payment' }
 
       # APIを叩き、返却値で支払いの合計値を計算
-      money = use_zaim_api.get_list_of_input_money_data(options)
+      money = use_zaim_api.get_list_of_input_money_data(user.id, options)
       sum = UseZaimApi.sum_payment_amount(money)
 
       # 達成していたらツイートする

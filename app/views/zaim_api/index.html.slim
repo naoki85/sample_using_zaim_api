@@ -1,12 +1,11 @@
-- if @money['money'].count > 0
-  table.table
-    - before_row_date = ''
-    - @money['money'].each do |money|
-      - if before_row_date != money['date']
-        - before_row_date = money['date']
-        tr.row-date
-          td = json_date_convert_ja_date(money['date'])
-      tr
-        td = words_category_name_and_amount(money['category_id'], money['amount'])
-- else
-  p.alert.alert-danger 直近の支払い履歴はありません。
+= form_with(url: zaim_money_path, method: :get, html: {class: 'js-form-ajax'}) do |f|
+  .form-field
+    = f.label :start_date, '開始月で絞り込み'
+    = f.select :start_date, [%w(前日 1), %w(先月 2), %w(全て 3)], {selected: '3'},
+            {class: 'form-control'}
+  .form-field
+    = f.submit '絞り込み', class: 'btn btn-primary'
+    = link_to '支払い履歴を再取得する', zaim_re_acquisition_path, class: 'btn btn-zaim l-margin-default-left'
+
+div.ajax-replace-field.l-margin-large-top
+  == render 'zaim_api/payment_list'

@@ -15,7 +15,11 @@ module ZaimApiHelper
   # @param  [Integer] amount
   # @return [String]
   def words_category_name_and_amount(category_id, amount)
-    category_name = t("views.zaim_api.index.categories.#{@category[category_id.to_i]}")
+    category_name = if @category.key?(category_id.to_i)
+                      t("views.zaim_api.index.categories.#{@category[category_id.to_i]}")
+                    else
+                      '個人設定'
+                    end
     money = "#{amount.to_i}円"
     category_name + ' ' + money
   end

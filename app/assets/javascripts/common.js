@@ -1,8 +1,14 @@
 $(document).on('turbolinks:load', function() {
-  var offsetY = -10;
-  var time = 500;
+  // Ajax:before
+  $('.js-form-ajax').on('ajax:before', function() {
+    $('.ajax-replace-field').html('<div class="ajax-loading"></div>');
+  });
 
+  // ページ内リンクのスクロール
   $('a[href^="#"]').on('click', function() {
+    var offsetY = -10;
+    var time = 500;
+
     var target = $(this.hash);
     if (!target.length) return ;
 

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'callback' => 'zaim_api#callback'
   get 'login_to_zaim' => 'zaim_api#login'
   get 'zaim/money' => 'zaim_api#index'
+  get 'zaim/re_acquisition' => 'zaim_api#index_re_acquisition'
 
   get 'auth/:provider/callback' => 'sessions#create'
   get '/logout' => 'sessions#destroy', as: :logout

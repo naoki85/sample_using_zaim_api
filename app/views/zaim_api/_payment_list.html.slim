@@ -1,0 +1,15 @@
+table.display-sum-table
+  tr
+    td 支払い合計
+    td = "#{number_with_delimiter(@sum)} 円"
+
+- if @money.count > 0
+  table.table
+    - @money.each do |key, array|
+      tr.row-date
+        td = json_date_convert_ja_date(key)
+      - array.each do |values|
+        tr
+          td = words_category_name_and_amount(values['category_id'], values['amount'])
+- else
+  p.alert.alert-danger 直近の支払い履歴はありません。

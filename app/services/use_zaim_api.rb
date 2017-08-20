@@ -10,10 +10,13 @@ class UseZaimApi
   end
 
   # List user input
-  # @param  [Hash]
+  # @param  [Integer] user_id
+  # @param  [Hash]    options
   # @return [JSON]
-  def get_list_of_input_money_data(options)
-    self.zaim_api.home_money(options)
+  def get_list_of_input_money_data(user_id, options)
+    Rails.cache.fetch("zaim_api/home/money/#{user_id}", expired_in: 1.hour) do
+      self.zaim_api.home_money(options)
+    end
   end
 
   # List category and return params are hash key is ID and value is category name.
