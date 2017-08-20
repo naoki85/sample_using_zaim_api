@@ -6,8 +6,33 @@ div.l-margin-default-bottom
       li お預かりした情報は第三者に公開することはありません。
       li 本サービスのご利用により発生した、ユーザー（第3者も含む）の損害に対して一切の責任を負いません
 
+  h1.h1 使い方
+  div.container
+    h2.h2 本サービスは、支払い金額目標を達成した場合にツイートするTwitterボットになります。
+    ul.disc-list
+      - if logged_in?
+        li
+          = link_to 'Twitterボットを作成するために必要な情報を登録してください。', '#account'
+        li
+          | 情報は
+          = link_to 'こちらのサイト様', 'http://phiary.me/twitter-api-key-get-how-to/', target: '_blank'
+          | をご参照ください。
+        li
+          = link_to 'Zaimにログイン', '#account'
+          | し、情報を取得してください。
+        li
+          = link_to 'ツイートを設定しましょう。', '#tweet-message'
+      - else
+        li Twitterボットを作成するために必要な情報を登録してください。
+        li
+          | 情報は
+          = link_to 'こちらのサイト様', 'http://phiary.me/twitter-api-key-get-how-to/', target: '_blank'
+          | をご参照ください。
+        li Zaimにログインし、情報を取得してください。
+        li ツイートを設定しましょう。
+
 - if logged_in?
-  h1.h1 アカウント情報
+  h1#account.h1 アカウント情報
   div.container.logo-button
     - if already_set_api_key?
       p.alert.alert-success すでにTwitter API Keyが設定されています。
@@ -17,10 +42,7 @@ div.l-margin-default-bottom
       p.alert.alert-danger Twitter API Keyが登録されていません。
       = image_tag 'common/logo_twitter.jpg'
       = link_to '設定', edit_user_path, class: 'btn btn-default btn-toppage'
-
-  br
-
-  div.container.logo-button
+  div.container.logo-button.l-margin-large-top
     - if coordinated_with_zaim?(current_user)
       p.alert.alert-success すでにZaimと連携済みです。
       = image_tag 'common/logo_zaim.png'
@@ -30,11 +52,8 @@ div.l-margin-default-bottom
       = image_tag 'common/logo_zaim.png'
       = link_to 'Zaimへログイン', login_to_zaim_path, class: 'btn btn-zaim btn-toppage'
 
-  h1.h1 ツイート設定
-
-  br
-
-  div.container.logo-button
+  h1#tweet-message.h1 ツイート設定
+  div.container.logo-button.l-margin-default-top
     = link_to '新しい設定', new_tweet_message_path, class: 'btn btn-default l-margin-default-bottom'
 
     - if @tweet_messages.size > 0
